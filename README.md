@@ -1,6 +1,6 @@
 # Mortgage Risk Analytics Platform
 
-Enterprise-grade analytics for mortgage risk assessment using Freddie Mac loan data (2023-2024)
+Analytics platform for early detection of mortgage delinquency risk, built using Freddie Mac loan-level data (2023–2024).
 
 **[Live Dashboard](https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app)** | [Analysis Notebook](notebooks/01_mortgage_risk_analysis.ipynb) | [GitHub Repository](https://github.com/mokeyzz1/mortgage-risk-analytics)
 
@@ -8,37 +8,46 @@ Enterprise-grade analytics for mortgage risk assessment using Freddie Mac loan d
 
 ## Overview
 
-This platform provides advanced analytics to identify high-risk loans before delinquency occurs. Built with real Freddie Mac data spanning 2023-2024, the system processes over 2 million loan records to deliver actionable insights for risk management and underwriting decisions.
+This project provides data-driven insights to identify high-risk loans before serious delinquency occurs. Using real Freddie Mac data from 2023–2024, the system processes more than 2 million loans and 26 million monthly performance records to support proactive risk management and underwriting decisions.  
 
-**Target Users:** Mortgage lenders, credit policy teams, underwriters, risk managers, financial analysts
+**Target Users:** Mortgage lenders, credit policy teams, underwriters, risk managers, financial analysts  
+
+---
 
 ## Key Features
 
 **Interactive Dashboard**
-- Real-time portfolio monitoring across 2M+ loans
-- Interactive risk calculator for loan-level assessment
-- Geographic risk mapping and state-level analysis
+- Real-time portfolio monitoring across 2M+ loans  
+- Loan-level risk calculator with adjustable parameters  
+- Geographic risk mapping and state-level delinquency analysis  
 
 **Risk Modeling**
-- Automated loan classification (High/Medium/Low Risk)
-- Multi-factor assessment using credit scores, DTI ratios, and LTV ratios
-- Performance validation and accuracy tracking
+- Automated loan classification (High / Medium / Low risk)  
+- Multi-factor risk assessment using credit scores, DTI ratios, and LTV ratios  
+- Model validation with performance tracking  
 
 **Technical Performance**
-- High-speed caching system (30-60s → 1-3s loading time)
-- Cloud deployment with zero-downtime updates
-- Scalable architecture handling millions of records
+- Optimized caching: dashboard load times reduced from 30–60s → 1–3s  
+- Scalable cloud deployment with zero downtime  
+- Efficient architecture capable of handling millions of records  
+
+---
 
 ## Technical Architecture
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| **Data Processing** | Python, pandas, SQLite | ETL pipelines and data transformation |
-| **Analytics Engine** | Jupyter, NumPy, Statistical modeling | Risk analysis and model development |
-| **Visualization** | Plotly, Streamlit | Interactive charts and dashboard |
-| **Database** | SQLite, optimized queries | Data storage and retrieval |
-| **Deployment** | Streamlit Cloud, GitHub | Cloud hosting and version control |
-| **Performance** | Parquet, caching | Optimized data loading |
+| Component            | Technology                  | Purpose                                  |
+|----------------------|-----------------------------|------------------------------------------|
+| **Data Processing**  | Python, pandas, SQLite      | ETL pipelines and data transformation    |
+| **Analytics Engine** | Jupyter, NumPy, statistical modeling | Risk analysis and model development |
+| **Visualization**    | Plotly, Streamlit           | Interactive charts and dashboards        |
+| **Database**         | SQLite, optimized queries   | Structured storage and retrieval         |
+| **Deployment**       | Streamlit Cloud, GitHub     | Hosting, version control, and CI/CD      |
+| **Performance**      | Parquet, caching            | Optimized data access and load speed     |
+
+---
+
+## Project Structure
+
 
 ## Project Structure
 
@@ -70,23 +79,25 @@ mortgage-risk-analytics/
 ```
 ## Results
 
-**Key Metrics:**
-- 42.1% recall rate for identifying high-risk loans
-- 2000% performance improvement in dashboard loading
-- 2M+ loans analyzed across 8 quarters (2023-2024)
-- Coverage across all 50 US states
+**Key Outcomes:**  
+- **Risk Detection:** Achieved **42.1% recall**, meaning the framework correctly identifies 42% of true high-risk loans — a **5× improvement** compared to random selection.  
+- **Operational Efficiency:** By focusing on only ~3.6% of loans, the system reduces review workload by **95%**, enabling lenders to reallocate resources more effectively.  
+- **Business Value:** Early identification of at-risk loans supports proactive borrower outreach and loss prevention, with the potential to save **millions in foreclosure costs annually**.  
+- **Performance Optimization:** Dashboard loading time improved from **30–60 seconds to 1–3 seconds** (over **2000% faster**) through caching and Parquet optimization.  
+- **Coverage:** Analysis spans **2M+ loans across 8 quarters (2023–2024)** with full coverage across all 50 U.S. states.  
+
+---
 
 ## Quick Start
 
-**[View Live Dashboard](https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app)** - Instant access with pre-loaded data
+**[View Live Dashboard](https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app)** — instant access with preloaded data.  
 
-**Local Setup:**
+**Run Locally:**  
 ```bash
 git clone https://github.com/mokeyzz1/mortgage-risk-analytics.git
 cd mortgage-risk-analytics
 pip install -r requirements.txt
 streamlit run dashboards/mortgage_risk_dashboard.py
-```
 
 ## Dataset Information
 
