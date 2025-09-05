@@ -1,121 +1,116 @@
 # Mortgage Risk Analytics Platform
 
-**An end-to-end data analytics platform for mortgage risk assessment using real Freddie Mac loan data (2023-2024)**
+Enterprise-grade analytics for mortgage risk assessment using Freddie Mac loan data (2023-2024)
 
-[Live Dashboard](your-dashboard-url) | [Analysis Notebook](notebooks/01_mortgage_risk_analysis.ipynb)
+**[Live Dashboard](https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app)** | [Analysis Notebook](notebooks/01_mortgage_risk_analysis.ipynb) | [GitHub Repository](https://github.com/mokeyzz1/mortgage-risk-analytics)
 
-## Problem Statement
+---
 
-Mortgage lenders need to identify loans likely to become delinquent before it happens. This platform analyzes borrower characteristics, loan features, and geographic factors to predict risk and improve underwriting decisions.
+## Overview
 
-**Target Users:** Mortgage lenders, credit policy teams, underwriters, risk managers
+This platform provides advanced analytics to identify high-risk loans before delinquency occurs. Built with real Freddie Mac data spanning 2023-2024, the system processes over 2 million loan records to deliver actionable insights for risk management and underwriting decisions.
+
+**Target Users:** Mortgage lenders, credit policy teams, underwriters, risk managers, financial analysts
 
 ## Key Features
 
-- **Interactive Dashboard** - Real-time portfolio monitoring and risk analytics
-- **Risk Classification** - Automated loan risk tier assignment (High/Medium/Low)
-- **Geographic Analysis** - State-level risk mapping and trends
-- **Performance Metrics** - Model validation and business impact tracking
-- **SQL Database Layer** - Organized schema and reusable queries for data analysis
+**Interactive Dashboard**
+- Real-time portfolio monitoring across 2M+ loans
+- Interactive risk calculator for loan-level assessment
+- Geographic risk mapping and state-level analysis
 
-## Technical Stack
+**Risk Modeling**
+- Automated loan classification (High/Medium/Low Risk)
+- Multi-factor assessment using credit scores, DTI ratios, and LTV ratios
+- Performance validation and accuracy tracking
 
-- **Data Processing:** Python, pandas, SQLite
-- **Analytics:** Jupyter notebooks, statistical modeling
-- **Visualization:** Plotly, Streamlit
-- **Deployment:** Streamlit Cloud, optimized performance
+**Technical Performance**
+- High-speed caching system (30-60s → 1-3s loading time)
+- Cloud deployment with zero-downtime updates
+- Scalable architecture handling millions of records
+
+## Technical Architecture
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Data Processing** | Python, pandas, SQLite | ETL pipelines and data transformation |
+| **Analytics Engine** | Jupyter, NumPy, Statistical modeling | Risk analysis and model development |
+| **Visualization** | Plotly, Streamlit | Interactive charts and dashboard |
+| **Database** | SQLite, optimized queries | Data storage and retrieval |
+| **Deployment** | Streamlit Cloud, GitHub | Cloud hosting and version control |
+| **Performance** | Parquet, caching | Optimized data loading |
 
 ## Project Structure
 
 ```
 mortgage-risk-analytics/
 ├── dashboards/
-│   └── mortgage_risk_dashboard.py    # Main dashboard
+│   └── mortgage_risk_dashboard.py      # Main Streamlit dashboard (1,300+ lines)
 ├── data/
-│   ├── dashboard_cache/              # Optimized data (275KB)
-│   └── processed/                    # Database files
+│   ├── dashboard_cache/                # Optimized cache files (275KB)
+│   │   ├── main_dashboard_data.parquet
+│   │   ├── geographic_data.parquet
+│   │   ├── credit_distribution.pkl
+│   │   ├── risk_summary.pkl
+│   │   └── summary_stats.json
+│   ├── processed/
+│   │   └── mortgage_analytics.db       # Main database (4.5GB)
+│   └── raw/                           # Freddie Mac source data (2.4GB)
 ├── notebooks/
-│   └── 01_mortgage_risk_analysis.ipynb
+│   └── 01_mortgage_risk_analysis.ipynb # Complete analysis workflow
 ├── src/
 │   ├── database/
-│   │   ├── schema.sql                # Database schema
-│   │   ├── queries.sql               # Analysis queries
-│   │   └── db_manager.py             # Database wrapper
-│   ├── optimize_dashboard_data.py
-│   └── config.py
-└── requirements.txt
+│   │   ├── schema.sql                  # Database schema design
+│   │   ├── queries.sql                 # Reusable analytical queries
+│   │   └── db_manager.py               # Database connection wrapper
+│   ├── optimize_dashboard_data.py      # Performance optimization
+│   └── config.py                       # Configuration management
+├── streamlit_app.py                    # Alternative entry point
+└── requirements.txt                    # Python dependencies
 ```
-
 ## Results
 
-- **Risk Detection:** 42.1% recall rate for identifying high-risk loans
-- **Efficiency:** Reduces manual review workload to 11.3% of portfolio
-- **Performance:** Optimized loading from 30-60s to 1-3s (2000% improvement)
-- **Data Scale:** Processed 2.4GB of real mortgage data covering millions of loans
+**Key Metrics:**
+- 42.1% recall rate for identifying high-risk loans
+- 2000% performance improvement in dashboard loading
+- 2M+ loans analyzed across 8 quarters (2023-2024)
+- Coverage across all 50 US states
 
 ## Quick Start
 
-### Option 1: Demo Mode (Immediate)
+**[View Live Dashboard](https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app)** - Instant access with pre-loaded data
+
+**Local Setup:**
 ```bash
 git clone https://github.com/mokeyzz1/mortgage-risk-analytics.git
 cd mortgage-risk-analytics
 pip install -r requirements.txt
 streamlit run dashboards/mortgage_risk_dashboard.py
 ```
-*Uses pre-computed cache files (275KB) - runs instantly!*
 
-### Option 2: Full Analysis (Complete Dataset)
-
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/mokeyzz1/mortgage-risk-analytics.git
-   cd mortgage-risk-analytics
-   pip install -r requirements.txt
-   ```
-
-2. **Download Freddie Mac Data**
-   - Visit [Freddie Mac Historical Loan Performance Data](https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset)
-   - Create free account and accept terms
-   - Download **Historical Data 2023** and **Historical Data 2024** (8 quarters)
-   - Extract files to: `data/raw/historical_data_YYYY/historical_data_YYYYQX/`
-
-3. **Data Structure (After Download)**
-   ```
-   data/raw/
-   ├── historical_data_2023/
-   │   ├── historical_data_2023Q1/
-   │   │   ├── historical_data_2023Q1.txt
-   │   │   └── historical_data_time_2023Q1.txt
-   │   └── ... (Q2, Q3, Q4)
-   └── historical_data_2024/
-       └── ... (Q1, Q2, Q3, Q4)
-   ```
-
-4. **Process Data**
-   ```bash
-   python data_assessment.py  # Validate data structure
-   jupyter notebook notebooks/01_mortgage_risk_analysis.ipynb  # Run full analysis
-   ```
-
-5. **Run Dashboard**
-   ```bash
-   streamlit run dashboards/mortgage_risk_dashboard.py
-   ```
-
-## Data Information
+## Dataset Information
 
 **Source:** Freddie Mac Single-Family Loan-Level Dataset (2023-2024)
-- **Size:** ~2.4GB compressed, ~7GB processed
-- **Records:** 2M+ loans with 26M+ monthly performance updates  
-- **Fields:** 32+ data points per loan (credit score, LTV, geography, etc.)
-- **License:** Free for research and educational use
-- **Update Frequency:** Quarterly releases
+- 2M+ loans with 26M+ monthly performance updates across 8 quarters
+- Geographic coverage: All 50 US states
+- 32+ data fields per loan (FICO, LTV, geography, performance metrics)
+- Free for research and educational use
 
-**Note:** Raw data files are not included in this repository due to size (7GB total). The dashboard runs on optimized cache files (275KB) that provide full functionality for demonstration purposes.
+*Note: Raw data files are not included due to size. The dashboard uses optimized cache files for demonstration.*
 
-## Skills Demonstrated
+## Technologies
 
-- **Data Engineering:** ETL pipelines, database optimization, performance tuning
-- **Data Science:** Statistical analysis, risk modeling, feature engineering
-- **Business Intelligence:** Dashboard development, KPI design, stakeholder communication
-- **Software Development:** Python programming, version control, deployment optimization
+**Data & Analytics:** Python, pandas, NumPy, SQLite, Jupyter
+**Visualization:** Plotly, Streamlit 
+**Deployment:** Streamlit Cloud, GitHub, Git LFS
+**Performance:** Caching, Parquet optimization
+
+---
+
+## Links
+
+- **Live Dashboard:** https://mokeyzz1-mortgage-risk-dashboardsmortgage-risk-dashboard-6nzvum.streamlit.app
+- **GitHub Repository:** https://github.com/mokeyzz1/mortgage-risk-analytics
+- **Data Source:** [Freddie Mac Historical Loan Performance Data](https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset)
+
+---
