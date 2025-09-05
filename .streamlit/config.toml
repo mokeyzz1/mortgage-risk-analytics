@@ -1,0 +1,31 @@
+# Streamlit Configuration for Production Deployment
+# Save as .streamlit/config.toml
+
+[server]
+# Performance optimizations
+maxUploadSize = 200
+maxMessageSize = 200
+enableCORS = false
+enableXsrfProtection = true
+
+# Memory management
+fileWatcherType = "none"
+runOnSave = false
+
+[browser]
+# Deployment settings
+gatherUsageStats = false
+showErrorDetails = false
+
+[theme]
+# Professional theme
+primaryColor = "#1e40af"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f8fafc"
+textColor = "#1f2937"
+
+[client]
+# Performance
+caching = true
+displayEnabled = true
+showErrorDetails = false

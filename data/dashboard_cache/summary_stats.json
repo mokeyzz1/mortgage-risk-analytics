@@ -1,0 +1,9 @@
+{
+  "total_loans": 50000,
+  "avg_credit_score": 750.52034,
+  "delinquency_rate": 1.8079999999999998,
+  "avg_ltv": 76.74064,
+  "high_risk_count": 50000,
+  "medium_risk_count": 0,
+  "low_risk_count": 0
+}
