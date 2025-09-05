@@ -12,7 +12,7 @@ sys.path.append(str(PROJECT_ROOT / 'src'))
 # Page config
 st.set_page_config(
     page_title="Mortgage Risk Analytics Dashboard",
-    page_icon="🏠",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -27,13 +27,11 @@ st.markdown("""
     :root {
         --primary-blue: #1e40af;
         --secondary-blue: #3b82f6;
-        --    with tab4:
-        # Mo        # Model Perform    with tab4:
-        # M        # Model Performance Metrics  
-        st.markdown("### 📊 Model Performance Summary")
-        st.markdown("*Key insights from risk assessment model validation*")l Performance Metrics - Dynamic calculations
-        st.markdown("### 📊 Model Performance Summary")
-        st.markdown("*Real-time validation metrics from current portfolio*")
+        # Model Performance Metrics  
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Model Performance Summary</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Key insights from risk assessment model validation</p>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Model Performance Summary</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Real-time validation metrics from current portfolio</p>", unsafe_allow_html=True)
         st.markdown("")
         
         # Calculate actual performance metrics
@@ -54,10 +52,9 @@ st.markdown("""
         
         # Review rate (% of loans flagged as high risk)
         review_rate = (high_risk_count / len(df) * 100)
-        
-        # Key findings from analysistrics - Dynamic calculations
-        st.markdown("### 📊 Model Performance Summary")
-        st.markdown("*Real-time validation metrics from current portfolio*")
+        # Key findings from analysis
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Model Performance Summary</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Real-time validation metrics from current portfolio</p>", unsafe_allow_html=True)
         st.markdown("")
         
         # Calculate actual performance metrics
@@ -80,7 +77,7 @@ st.markdown("""
         review_rate = (high_risk_count / len(df) * 100)
         
         # Key findings from analysisrformance Metrics - Dynamic calculations
-        st.markdown("### 📊 Model Performance Summary")
+        st.markdown("###  Model Performance Summary")
         st.markdown("*Real-time validation metrics from current portfolio*")
         st.markdown("")
         
@@ -169,36 +166,18 @@ st.markdown("""
         background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
     }
     
-    .metric-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-    
-    .metric-icon {
-        font-size: 1.5rem;
-        color: var(--primary-blue);
-        background: var(--neutral-100);
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
     .metric-value {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 2.5rem;
+        font-weight: 800;
         color: var(--neutral-900);
-        margin: 0.5rem 0;
+        margin: 0.75rem 0 0.5rem 0;
         letter-spacing: -0.025em;
+        line-height: 1;
     }
     
     .metric-label {
         font-size: 0.875rem;
-        font-weight: 500;
+        font-weight: 600;
         color: var(--neutral-600);
         margin: 0;
         text-transform: uppercase;
@@ -208,9 +187,12 @@ st.markdown("""
     .metric-trend {
         font-size: 0.75rem;
         font-weight: 500;
-        padding: 0.25rem 0.5rem;
-        border-radius: 6px;
-        margin-top: 0.5rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: 8px;
+        margin-top: 0.75rem;
+        background: var(--neutral-100);
+        color: var(--neutral-700);
+        display: inline-block;
     }
     
     .trend-up {
@@ -337,8 +319,63 @@ st.markdown("""
     
     /* Sidebar Styling */
     .css-1d391kg {
-        background: var(--neutral-50);
-        border-right: 1px solid var(--neutral-200);
+        background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        border-right: 2px solid #e2e8f0;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Sidebar Header Enhancement */
+    .css-1d391kg .element-container h1,
+    .css-1d391kg .element-container h2,
+    .css-1d391kg .element-container h3 {
+        color: #1e293b;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e2e8f0;
+    }
+    
+    /* Sidebar Slider Styling */
+    .css-1d391kg .stSlider {
+        margin-bottom: 1.5rem;
+    }
+    
+    .css-1d391kg .stSlider > div > div > div > div {
+        background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    }
+    
+    /* Enhanced Expander Styling for Sidebar */
+    .css-1d391kg .streamlit-expanderHeader {
+        background: linear-gradient(90deg, #f8fafc, #e2e8f0);
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #334155;
+        transition: all 0.2s ease;
+    }
+    
+    .css-1d391kg .streamlit-expanderHeader:hover {
+        background: linear-gradient(90deg, #e2e8f0, #cbd5e1);
+        transform: translateX(2px);
+    }
+    
+    /* Sidebar Alert Boxes Enhancement */
+    .css-1d391kg .stAlert {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+    
+    /* Sidebar Divider Enhancement */
+    .css-1d391kg hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+        margin: 2rem 0;
     }
     
     /* Tab Styling */
@@ -612,22 +649,22 @@ MORTGAGE_GLOSSARY = {
 }
 
 def show_glossary():
-    """Display the mortgage terminology glossary"""
+    """Display the mortgage terminology glossary with clean professional styling"""
     st.sidebar.markdown("---")
-    st.sidebar.markdown("### 📚 Mortgage Glossary")
+    st.sidebar.markdown("### Mortgage Glossary")
     
     # Create expandable sections for different categories
-    with st.sidebar.expander("💰 Financial Metrics", expanded=False):
+    with st.sidebar.expander("Financial Metrics", expanded=False):
         for term in ["DTI", "LTV", "FICO"]:
             if term in MORTGAGE_GLOSSARY:
                 info = MORTGAGE_GLOSSARY[term]
                 st.markdown(f"**{term}** - {info['full_name']}")
                 st.markdown(f"_{info['definition']}_")
                 if 'good_range' in info:
-                    st.markdown(f"✅ **Good Range:** {info['good_range']}")
+                    st.markdown(f"**Good Range:** {info['good_range']}")
                 st.markdown("---")
     
-    with st.sidebar.expander("📊 Performance Terms", expanded=False):
+    with st.sidebar.expander("Performance Terms", expanded=False):
         for term in ["Delinquency", "Default", "Serious Delinquency"]:
             if term in MORTGAGE_GLOSSARY:
                 info = MORTGAGE_GLOSSARY[term]
@@ -635,7 +672,7 @@ def show_glossary():
                 st.markdown(f"_{info['definition']}_")
                 st.markdown("---")
     
-    with st.sidebar.expander("🏠 Property & Loan Types", expanded=False):
+    with st.sidebar.expander("Property & Loan Types", expanded=False):
         for term in ["Purchase", "Refinance", "SF", "PUD", "Condo"]:
             if term in MORTGAGE_GLOSSARY:
                 info = MORTGAGE_GLOSSARY[term]
@@ -643,7 +680,7 @@ def show_glossary():
                 st.markdown(f"_{info['definition']}_")
                 st.markdown("---")
     
-    with st.sidebar.expander("🎯 Risk Categories", expanded=False):
+    with st.sidebar.expander("Risk Categories", expanded=False):
         for term in ["Primary Residence", "Second Home", "Investment Property", "Geographic Risk"]:
             if term in MORTGAGE_GLOSSARY:
                 info = MORTGAGE_GLOSSARY[term]
@@ -683,87 +720,36 @@ CHART_LAYOUT = {
 
 @st.cache_data
 def load_data():
-    """Load pre-optimized data for fast dashboard performance"""
-    try:
-        # Try to load pre-computed optimized data first
-        cache_dir = PROJECT_ROOT / 'data' / 'dashboard_cache'
-        main_data_path = cache_dir / 'main_dashboard_data.parquet'
-        
-        if main_data_path.exists():
-            # Load pre-computed data (much faster!)
-            df = pd.read_parquet(main_data_path)
-            return df
-        else:
-            # Fallback to database with smaller sample
-            database_path = PROJECT_ROOT / 'data' / 'processed' / 'mortgage_analytics.db'
-            conn = sqlite3.connect(database_path)
-            
-            # Much smaller sample for faster loading
-            query = """
-            SELECT 
-                CAST(o.borrower_credit_score AS INTEGER) as credit_score,
-                CAST(o.debt_to_income_ratio AS REAL) as dti,
-                CAST(o.original_loan_to_value AS REAL) as ltv,
-                o.loan_purpose as loan_purpose_desc,
-                o.property_type as property_type_desc,
-                o.first_time_buyer_flag,
-                o.property_state as state,
-                CASE WHEN MAX(CAST(p.current_loan_delinquency_status AS INTEGER)) > 2 THEN 1 ELSE 0 END as serious_delinquency_flag,
-                CAST(o.original_upb AS REAL) as loan_amount
-            FROM origination_data o
-            LEFT JOIN performance_data p ON o.loan_sequence_number = p.loan_sequence_number
-            WHERE o.borrower_credit_score != '' 
-            AND o.debt_to_income_ratio != '' 
-            AND o.original_loan_to_value != ''
-            AND o.borrower_credit_score IS NOT NULL
-            AND (CAST(substr(o.loan_sequence_number, -2) AS INTEGER) % 50) < 3  -- Much smaller sample
-            GROUP BY o.loan_sequence_number
-            LIMIT 25000  -- Cap for performance
-            """
-            
-            df = pd.read_sql_query(query, conn)
-            conn.close()
-            
-            # Add risk calculations
-            df['risk_tier'] = 'Low Risk'
-            df.loc[(df['credit_score'] < 680) | (df['dti'] > 0.43) | (df['ltv'] > 85), 'risk_tier'] = 'Medium Risk'
-            df.loc[(df['credit_score'] < 620) | (df['dti'] > 0.50) | (df['ltv'] > 95), 'risk_tier'] = 'High Risk'
-            
-            return df
-    except Exception as e:
-        st.error(f"Error loading data: {e}")
-        return pd.DataFrame()
+    """Load optimized data for instant dashboard performance"""
+    cache_dir = PROJECT_ROOT / 'data' / 'dashboard_cache'
+    main_data_path = cache_dir / 'main_dashboard_data.parquet'
+    
+    # Load pre-computed optimized data (275KB - instant loading)
+    if main_data_path.exists():
+        df = pd.read_parquet(main_data_path)
+        return df
+    else:
+        st.error('Data cache not found')
+        st.stop()
 
 @st.cache_data  
 def load_summary_stats():
-    """Load just summary statistics for fast metrics"""
-    try:
-        database_path = PROJECT_ROOT / 'data' / 'processed' / 'mortgage_analytics.db'
-        conn = sqlite3.connect(database_path)
-        
-        # Get quick counts and averages
-        summary_query = """
-        SELECT 
-            COUNT(DISTINCT o.loan_sequence_number) as total_loans,
-            AVG(CAST(o.borrower_credit_score AS REAL)) as avg_credit_score,
-            AVG(CAST(o.original_loan_to_value AS REAL)) as avg_ltv,
-            COUNT(DISTINCT CASE WHEN p.max_delinq > 2 THEN o.loan_sequence_number END) * 1.0 / COUNT(DISTINCT o.loan_sequence_number) as delinquency_rate
-        FROM origination_data o
-        LEFT JOIN (
-            SELECT loan_sequence_number, MAX(CAST(current_loan_delinquency_status AS INTEGER)) as max_delinq
-            FROM performance_data 
-            GROUP BY loan_sequence_number
-        ) p ON o.loan_sequence_number = p.loan_sequence_number
-        WHERE o.borrower_credit_score != '' 
-        AND o.borrower_credit_score IS NOT NULL
-        """
-        
-        result = pd.read_sql_query(summary_query, conn)
-        conn.close()
-        return result.iloc[0]
-    except Exception as e:
-        st.error(f"Error loading summary stats: {e}")
-        return None
+    """Load summary statistics from optimized cache"""
+    cache_dir = PROJECT_ROOT / 'data' / 'dashboard_cache'
+    summary_path = cache_dir / 'summary_stats.json'
+    
+    if summary_path.exists():
+        import json
+        with open(summary_path, 'r') as f:
+            stats = json.load(f)
+        return stats
+    else:
+        return {
+            'total_loans': 0,
+            'avg_credit_score': 0,
+            'avg_ltv': 0,
+            'delinquency_rate': 0
+        }
 
 def calculate_risk_score(credit_score, dti, ltv):
     """Simple risk scoring function based on analysis findings"""
@@ -802,34 +788,20 @@ def get_risk_tier(risk_score):
 
 # Main Dashboard
 def main():
-    # Performance indicator
-    cache_dir = PROJECT_ROOT / 'data' / 'dashboard_cache'
-    using_cache = (cache_dir / 'main_dashboard_data.parquet').exists()
-    
-    if using_cache:
-        st.success("⚡ **Optimized Mode**: Fast loading enabled (50K sample)")
-    else:
-        st.warning("🐌 **Fallback Mode**: Loading from database (slower)")
-    
-    # Header with data freshness
-    col_header1, col_header2 = st.columns([3, 1])
-    with col_header1:
-        st.markdown("""
+    # Centered header
+    st.markdown("""
+    <div style="text-align: center; margin: 2rem 0;">
         <h1 class="main-header">
-            <span style="font-size: 2.75rem; margin-right: 0.5rem;">🏠</span>
             <span style="background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); 
                          -webkit-background-clip: text; 
                          -webkit-text-fill-color: transparent; 
                          background-clip: text;">Mortgage Risk Analytics Dashboard</span>
         </h1>
-        """, unsafe_allow_html=True)
-    with col_header2:
-        st.markdown("""
-        <div style="text-align: right; padding-top: 1rem;">
-            <div style="font-size: 0.8rem; color: #6b7280;">Data Updated</div>
-            <div style="font-size: 0.9rem; color: #374151; font-weight: 500;">2024 Q1-Q4</div>
+        <div style="font-size: 0.8rem; color: #6b7280; font-weight: 400; margin-top: 0.5rem;">
+            Optimized with 50K samples
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
     
     # Compact terminology reference in header area
     st.markdown("""
@@ -838,11 +810,13 @@ def main():
         border: 1px solid rgba(59, 130, 246, 0.1);
         border-radius: 6px;
         padding: 0.5rem 0.75rem;
-        margin: 0.5rem 0;
+        margin: 0.5rem auto;
         font-size: 0.8rem;
         color: #374151;
+        text-align: center;
+        max-width: 800px;
     ">
-        <span style="font-weight: 600; color: #1f2937;">📚 Key Terms:</span>
+        <span style="font-weight: 600; color: #1f2937;">Key Terms:</span>
         <span style="margin: 0 0.75rem;"><strong>DTI</strong> = Debt-to-Income</span>
         <span style="margin: 0 0.75rem;"><strong>LTV</strong> = Loan-to-Value</span>
         <span style="margin: 0 0.75rem;"><strong>FICO</strong> = Credit Score (300-850)</span>
@@ -861,11 +835,20 @@ def main():
     
     # Sidebar - Risk Calculator & Analysis
     with st.sidebar:
-        st.header("🧮 Risk Calculator")
+        # Clean professional header
+        st.markdown("""
+        <div style='text-align: center; padding: 0.5rem 0 1rem 0;'>
+            <h1 style='margin: 0; color: #1e293b; font-size: 1.5rem; font-weight: 700;'>Risk Calculator</h1>
+            <p style='margin: 0.25rem 0 0 0; color: #64748b; font-size: 0.85rem;'>Interactive mortgage risk assessment</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Compact input section
+        st.markdown("#### Loan Parameters")
         
         # Risk input parameters
         credit_score = st.slider(
-            "📊 Credit Score (FICO)", 
+            "Credit Score (FICO)", 
             min_value=300, 
             max_value=850, 
             value=720, 
@@ -873,7 +856,7 @@ def main():
         )
         
         dti = st.slider(
-            "💰 DTI Ratio (%)", 
+            "DTI Ratio (%)", 
             min_value=0, 
             max_value=60, 
             value=25, 
@@ -881,7 +864,7 @@ def main():
         )
         
         ltv = st.slider(
-            "🏠 LTV Ratio (%)", 
+            "LTV Ratio (%)", 
             min_value=0, 
             max_value=100, 
             value=75, 
@@ -892,49 +875,50 @@ def main():
         risk_score = calculate_risk_score(credit_score, dti, ltv)
         risk_tier = get_risk_tier(risk_score)
         
-        # Display risk assessment
-        st.markdown("### Risk Assessment")
+        # Risk Assessment Display
+        st.markdown("#### Risk Assessment")
         
         # Color-coded risk display
         if risk_tier == "High Risk":
-            st.error(f"🔴 **{risk_tier}**: {risk_score:.2%} default probability")
+            st.error(f"**{risk_tier}**: {risk_score:.2%} default probability")
         elif risk_tier == "Medium Risk":
-            st.warning(f"� **{risk_tier}**: {risk_score:.2%} default probability")
+            st.warning(f"**{risk_tier}**: {risk_score:.2%} default probability")
         else:
-            st.success(f"🟢 **{risk_tier}**: {risk_score:.2%} default probability")
+            st.success(f"**{risk_tier}**: {risk_score:.2%} default probability")
         
-        # Risk factor analysis
-        st.markdown("---")
-        st.subheader("� Risk Factors")
+        # Risk Factor Analysis
+        st.markdown("#### Risk Insights")
         
         # Dynamic insights based on inputs
         insights = []
         
         if credit_score < 650:
-            insights.append("⚠️ Credit score is below prime threshold")
+            insights.append("Credit score is below prime threshold")
         elif credit_score >= 750:
-            insights.append("✅ Excellent credit score reduces risk")
+            insights.append("Excellent credit score reduces risk")
         
         if dti > 43:
-            insights.append("⚠️ DTI ratio exceeds recommended maximum")
+            insights.append("DTI ratio exceeds recommended maximum")
         elif dti <= 28:
-            insights.append("✅ Conservative DTI ratio is favorable")
+            insights.append("Conservative DTI ratio is favorable")
         
         if ltv > 80:
-            insights.append("⚠️ High LTV increases default risk")
+            insights.append("High LTV increases default risk")
         elif ltv <= 70:
-            insights.append("✅ Low LTV provides good equity cushion")
+            insights.append("Low LTV provides good equity cushion")
         
-        # Display insights with consistent formatting
+        # Display insights
         if insights:
-            for insight in insights:
-                st.markdown(f"**{insight}**")
+            for i, insight in enumerate(insights):
+                if "below prime" in insight or "exceeds" in insight or "High LTV" in insight:
+                    st.warning(f"**{insight}**")
+                else:
+                    st.info(f"**{insight}**")
         else:
-            st.success("✅  **All metrics within optimal ranges**")
+            st.success("**All metrics within optimal ranges**")
             
-        # Industry benchmarks
-        st.markdown("---")
-        st.markdown("### 📋 Industry Benchmarks")
+        # Industry Benchmarks
+        st.markdown("#### Industry Benchmarks")
         st.markdown("**Credit Score 720+:** Prime borrowers")
         st.markdown("**DTI <30%:** Conservative lending")  
         st.markdown("**LTV <80%:** Strong equity position")
@@ -944,8 +928,8 @@ def main():
     
     # Portfolio metrics section
     st.markdown("---")
-    st.markdown("## 📊 Portfolio Performance Metrics")
-    st.markdown("*Key performance indicators across 1.98M mortgage loans*")
+    st.markdown("<h2 style='text-align: center;'>Portfolio Performance Metrics</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Key performance indicators across 1.98M mortgage loans</p>", unsafe_allow_html=True)
     st.markdown("")
     
     # Main content - use full dataset metrics
@@ -956,48 +940,36 @@ def main():
         with col1:
             st.markdown(f"""
             <div class="metric-card-pro metric-card-blue">
-                <div class="metric-header">
-                    <div class="metric-icon">📊</div>
-                </div>
                 <div class="metric-value">{int(summary_stats['total_loans']):,}</div>
                 <div class="metric-label">Total Loans</div>
-                <div class="metric-trend trend-neutral">📈 Portfolio Size</div>
+                <div class="metric-trend trend-neutral">Portfolio Size</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown(f"""
             <div class="metric-card-pro metric-card-green">
-                <div class="metric-header">
-                    <div class="metric-icon">🎯</div>
-                </div>
                 <div class="metric-value">{summary_stats['avg_credit_score']:.0f}</div>
                 <div class="metric-label">Avg Credit Score</div>
-                <div class="metric-trend trend-up">✓ High Quality</div>
+                <div class="metric-trend trend-up">High Quality</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown(f"""
             <div class="metric-card-pro metric-card-orange">
-                <div class="metric-header">
-                    <div class="metric-icon">⚠️</div>
-                </div>
                 <div class="metric-value">{summary_stats['delinquency_rate']*100:.1f}%</div>
                 <div class="metric-label">Delinquency Rate</div>
-                <div class="metric-trend trend-neutral">📋 Industry Range</div>
+                <div class="metric-trend trend-neutral">Industry Range</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col4:
             st.markdown(f"""
             <div class="metric-card-pro metric-card-purple">
-                <div class="metric-header">
-                    <div class="metric-icon">🏦</div>
-                </div>
                 <div class="metric-value">{summary_stats['avg_ltv']:.1f}%</div>
                 <div class="metric-label">Avg LTV Ratio</div>
-                <div class="metric-trend trend-up">✓ Conservative</div>
+                <div class="metric-trend trend-up">Conservative</div>
             </div>
             """, unsafe_allow_html=True)
     else:
@@ -1005,58 +977,55 @@ def main():
         with col1:
             st.markdown(f"""
             <div class="metric-card-pro metric-card-blue">
-                <div class="metric-header">
-                    <div class="metric-icon">📊</div>
-                </div>
                 <div class="metric-value">{len(df):,}</div>
                 <div class="metric-label">Sample Size</div>
-                <div class="metric-trend trend-neutral">📈 Data Sample</div>
+                <div class="metric-trend trend-neutral">Data Sample</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown(f"""
-            <div class="metric-card-green">
-                <div class="metric-header">
-                    <div class="metric-icon">🎯</div>
-                </div>
+            <div class="metric-card-pro metric-card-green">
                 <div class="metric-value">{df['credit_score'].mean():.0f}</div>
                 <div class="metric-label">Avg Credit Score</div>
-                <div class="metric-trend trend-up">✓ Sample Quality</div>
+                <div class="metric-trend trend-up">Sample Quality</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown(f"""
-            <div class="metric-card-orange">
-                <div class="metric-header">
-                    <div class="metric-icon">⚠️</div>
-                </div>
+            <div class="metric-card-pro metric-card-orange">
                 <div class="metric-value">{df['serious_delinquency_flag'].mean()*100:.1f}%</div>
                 <div class="metric-label">Delinquency Rate</div>
-                <div class="metric-trend trend-neutral">📋 Sample Rate</div>
+                <div class="metric-trend trend-neutral">Sample Rate</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col4:
             st.markdown(f"""
-            <div class="metric-card-purple">
-                <div class="metric-header">
-                    <div class="metric-icon">🏦</div>
-                </div>
+            <div class="metric-card-pro metric-card-purple">
                 <div class="metric-value">{df['ltv'].mean():.1f}%</div>
                 <div class="metric-label">Avg LTV Ratio</div>
-                <div class="metric-trend trend-up">✓ Sample LTV</div>
+                <div class="metric-trend trend-up">Sample LTV</div>
             </div>
             """, unsafe_allow_html=True)
     
     # Enhanced charts section
     st.markdown("---")
-    st.markdown("## 📈 Detailed Analytics")
-    st.markdown("*Interactive analysis of risk patterns and portfolio composition*")
+    st.markdown("<h2 style='text-align: center;'>Detailed Analytics</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Interactive analysis of risk patterns and portfolio composition</p>", unsafe_allow_html=True)
+    
+    # Center the tabs
+    st.markdown("""
+    <style>
+    .stTabs [data-baseweb="tab-list"] {
+        justify-content: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
     # Charts section
-    tab1, tab2, tab3, tab4 = st.tabs(["📊 Portfolio Overview", "🗺️ Geographic Risk", "📈 Risk Distribution", "⚙️ Model Performance"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Portfolio Overview", "Geographic Risk", "Risk Distribution", "Model Performance"])
     
     with tab1:
         # Main analysis charts
@@ -1071,7 +1040,7 @@ def main():
                 df_credit, 
                 x='credit_score', 
                 color='performance_status',
-                title="📊 Credit Score Distribution by Performance<br><sup>FICO Score: 300-850 scale measuring creditworthiness</sup>",
+                title=" Credit Score Distribution by Performance<br><sup>FICO Score: 300-850 scale measuring creditworthiness</sup>",
                 nbins=30,
                 color_discrete_map={'Current': PROFESSIONAL_COLORS['success'], 'Delinquent': PROFESSIONAL_COLORS['danger']},
                 labels={'performance_status': COLUMN_LABELS['serious_delinquency_flag'], 'credit_score': 'Credit Score (FICO)'}
@@ -1112,7 +1081,7 @@ def main():
                 dti_analysis,
                 x='dti_category',
                 y='default_rate',
-                title="📈 DTI vs Default Rate (Industry Standards)<br><sup>DTI = Debt-to-Income Ratio: Monthly debt payments ÷ gross income</sup>",
+                title=" DTI vs Default Rate (Industry Standards)<br><sup>DTI = Debt-to-Income Ratio: Monthly debt payments ÷ gross income</sup>",
                 color=dti_analysis['default_rate'],
                 color_continuous_scale=[[0, PROFESSIONAL_COLORS['success']], [0.5, PROFESSIONAL_COLORS['warning']], [1, PROFESSIONAL_COLORS['danger']]],
                 labels={'default_rate': 'Default Rate (%)', 'dti_category': 'DTI Range', 'color': 'Default Rate'},
@@ -1128,7 +1097,7 @@ def main():
             st.plotly_chart(fig_dti, use_container_width=True)
         
         # Portfolio composition analysis
-        st.markdown("### 🔍 Portfolio Composition Analysis")
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Portfolio Composition Analysis</h3>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
         
@@ -1138,7 +1107,7 @@ def main():
             fig_purpose_pie = px.pie(
                 values=purpose_dist.values,
                 names=purpose_dist.index,
-                title="🏠 Loan Purpose Distribution",
+                title=" Loan Purpose Distribution",
                 color_discrete_sequence=[PROFESSIONAL_COLORS['primary'], PROFESSIONAL_COLORS['secondary'], PROFESSIONAL_COLORS['accent']]
             )
             fig_purpose_pie.update_layout(**CHART_LAYOUT, height=400)
@@ -1149,7 +1118,7 @@ def main():
             fig_ltv = px.histogram(
                 df,
                 x='ltv',
-                title="🏦 LTV Ratio Distribution<br><sup>LTV = Loan-to-Value Ratio: Loan amount ÷ property value</sup>",
+                title=" LTV Ratio Distribution<br><sup>LTV = Loan-to-Value Ratio: Loan amount ÷ property value</sup>",
                 nbins=25,
                 color_discrete_sequence=[PROFESSIONAL_COLORS['secondary']],
                 labels={'ltv': 'LTV Ratio (%)'}
@@ -1160,7 +1129,7 @@ def main():
             st.plotly_chart(fig_ltv, use_container_width=True)
         
         # Risk vs Performance Summary
-        st.markdown("### ⚡ Risk vs Performance Summary")
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Risk vs Performance Summary</h3>", unsafe_allow_html=True)
         
         # Create risk tier summary
         df['risk_score'] = df.apply(lambda row: calculate_risk_score(row['credit_score'], row['dti'], row['ltv']), axis=1)
@@ -1174,21 +1143,25 @@ def main():
         risk_summary.columns = ['total_loans', 'defaults', 'default_rate', 'avg_credit', 'avg_amount']
         risk_summary = risk_summary.reset_index()
         
-        # Display as interactive table
-        st.markdown("**Portfolio Performance by Risk Tier:**")
-        st.dataframe(
-            risk_summary,
-            column_config={
-                'risk_tier': 'Risk Tier',
-                'total_loans': st.column_config.NumberColumn('Total Loans', format='%d'),
-                'defaults': st.column_config.NumberColumn('Defaults', format='%d'),
-                'default_rate': st.column_config.NumberColumn('Default Rate', format='%.2%'),
-                'avg_credit': st.column_config.NumberColumn('Avg Credit Score', format='%.0f'),
-                'avg_amount': st.column_config.NumberColumn('Avg Loan Amount', format='$%.0f')
-            },
-            hide_index=True,
-            use_container_width=True
-        )
+        # Display as interactive table with centered subheading
+        st.markdown("<p style='text-align: center; margin: 1.5rem 0 1rem 0; color: #4b5563; font-weight: 500; font-size: 1.1em;'>Portfolio Performance by Risk Tier</p>", unsafe_allow_html=True)
+        
+        # Create centered container for the table
+        col1, col2, col3 = st.columns([1, 8, 1])
+        with col2:
+            st.dataframe(
+                risk_summary,
+                column_config={
+                    'risk_tier': 'Risk Tier',
+                    'total_loans': st.column_config.NumberColumn('Total Loans', format='%d'),
+                    'defaults': st.column_config.NumberColumn('Defaults', format='%d'),
+                    'default_rate': st.column_config.NumberColumn('Default Rate', format='%.2%'),
+                    'avg_credit': st.column_config.NumberColumn('Avg Credit Score', format='%.0f'),
+                    'avg_amount': st.column_config.NumberColumn('Avg Loan Amount', format='$%.0f')
+                },
+                hide_index=True,
+                use_container_width=True
+            )
     
     with tab2:
         # Geographic Risk Analysis
@@ -1202,7 +1175,7 @@ def main():
             state_risk = state_risk[state_risk['loan_count'] >= 50]  # Filter states with enough data
             
             # Interactive US Map
-            st.markdown("### 🗺️ Interactive Risk Map")
+            st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Interactive Risk Map</h3>", unsafe_allow_html=True)
             
             # Create choropleth map
             fig_map = px.choropleth(
@@ -1211,7 +1184,7 @@ def main():
                 color='default_rate',
                 locationmode='USA-states',
                 scope='usa',
-                title="🌎 Default Risk by State",
+                title="Default Risk by State",
                 color_continuous_scale=[
                     [0, PROFESSIONAL_COLORS['success']],
                     [0.5, PROFESSIONAL_COLORS['warning']], 
@@ -1245,7 +1218,7 @@ def main():
                     state_risk.sort_values('default_rate', ascending=False).head(10),
                     x='state',
                     y='default_rate',
-                    title="� Top 10 Highest Risk States",
+                    title="Top 10 Highest Risk States",
                     color='default_rate',
                     color_continuous_scale=[[0, PROFESSIONAL_COLORS['success']], [1, PROFESSIONAL_COLORS['danger']]]
                 )
@@ -1259,7 +1232,7 @@ def main():
                     y='default_rate',
                     size='loan_count',
                     hover_data=['state'],
-                    title="🎯 Credit Quality vs Risk by State",
+                    title=" Credit Quality vs Risk by State",
                     labels={'avg_credit_score': 'Average Credit Score', 'default_rate': 'Default Rate'},
                     color='default_rate',
                     color_continuous_scale=[[0, PROFESSIONAL_COLORS['success']], [1, PROFESSIONAL_COLORS['danger']]]
@@ -1267,7 +1240,7 @@ def main():
                 fig_credit_state.update_layout(**CHART_LAYOUT, height=400)
                 st.plotly_chart(fig_credit_state, use_container_width=True)
         else:
-            st.info("🗺️ Geographic data not available in current dataset")
+            st.info(" Geographic data not available in current dataset")
     
     with tab3:
         # Risk Distribution
@@ -1282,7 +1255,7 @@ def main():
             fig_risk_pie = px.pie(
                 values=risk_dist.values,
                 names=risk_dist.index,
-                title="🔄 Portfolio Risk Distribution",
+                title="Portfolio Risk Distribution",
                 color_discrete_map=RISK_COLORS
             )
             fig_risk_pie.update_layout(**CHART_LAYOUT)
@@ -1305,7 +1278,7 @@ def main():
                 performance_metrics,
                 x='risk_tier',
                 y='default_rate',
-                title="⚙️ Actual Default Rate by Predicted Risk Tier",
+                title="Actual Default Rate by Predicted Risk Tier",
                 color='risk_tier',
                 color_discrete_map=RISK_COLORS,
                 text='default_rate'
@@ -1316,30 +1289,35 @@ def main():
             fig_performance.update_layout(**CHART_LAYOUT, height=400)
             st.plotly_chart(fig_performance, use_container_width=True)
             
-            # Show the performance table below
-            st.markdown("#### 📊 Performance Breakdown")
+            # Show the performance table below with improved styling
+            st.markdown("<h4 style='text-align: center; margin: 2rem 0 1rem 0; color: #1f2937; font-weight: 600;'>Performance Breakdown</h4>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280; margin-bottom: 1rem;'>Detailed risk tier performance metrics</p>", unsafe_allow_html=True)
+            
             performance_display = performance_metrics.copy()
             performance_display['default_rate'] = performance_display['default_rate'].apply(lambda x: f"{x:.2%}")
             performance_display['avg_credit'] = performance_display['avg_credit'].apply(lambda x: f"{x:.0f}")
             performance_display['avg_dti'] = performance_display['avg_dti'].apply(lambda x: f"{x:.1f}%")
             performance_display['avg_ltv'] = performance_display['avg_ltv'].apply(lambda x: f"{x:.1f}%")
             
-            st.dataframe(
-                performance_display[['risk_tier', 'total_loans', 'default_rate', 'avg_credit']],
-                column_config={
-                    'risk_tier': 'Risk Tier',
-                    'total_loans': 'Total Loans',
-                    'default_rate': 'Default Rate',
-                    'avg_credit': 'Avg Credit Score'
-                },
-                hide_index=True,
-                use_container_width=True
-            )
+            # Create centered container for the performance table
+            col1, col2, col3 = st.columns([1, 8, 1])
+            with col2:
+                st.dataframe(
+                    performance_display[['risk_tier', 'total_loans', 'default_rate', 'avg_credit']],
+                    column_config={
+                        'risk_tier': 'Risk Tier',
+                        'total_loans': 'Total Loans',
+                        'default_rate': 'Default Rate',
+                        'avg_credit': 'Avg Credit Score'
+                    },
+                    hide_index=True,
+                    use_container_width=True
+                )
     
     with tab4:
         # Model Performance Metrics
-        st.markdown("### � Model Performance Summary")
-        st.markdown("*Key insights from risk assessment model validation*")
+        st.markdown("<h3 style='text-align: center; margin: 2rem 0 1rem 0;'>Model Performance Summary</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; font-style: italic; color: #6b7280;'>Key insights from risk assessment model validation</p>", unsafe_allow_html=True)
         st.markdown("")
         
         # Key findings from analysis
@@ -1347,64 +1325,59 @@ def main():
         
         with col1:
             st.markdown(f"""
-            <div class="metric-card-green">
-                <div class="metric-header">
-                    <div class="metric-icon">🎯</div>
-                </div>
+            <div class="metric-card-pro metric-card-green">
                 <div class="metric-value">42.1%</div>
                 <div class="metric-label">Model Recall</div>
-                <div class="metric-trend trend-up">✓ Default Capture Rate</div>
+                <div class="metric-trend trend-up">Default Capture Rate</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown(f"""
-            <div class="metric-card-blue">
-                <div class="metric-header">
-                    <div class="metric-icon">🔍</div>
-                </div>
+            <div class="metric-card-pro metric-card-blue">
                 <div class="metric-value">3.2%</div>
                 <div class="metric-label">Precision</div>
-                <div class="metric-trend trend-up">✓ High Risk Accuracy</div>
+                <div class="metric-trend trend-up">High Risk Accuracy</div>
             </div>
             """, unsafe_allow_html=True)
         
         with col3:
             st.markdown(f"""
-            <div class="metric-card-purple">
-                <div class="metric-header">
-                    <div class="metric-icon">📋</div>
-                </div>
+            <div class="metric-card-pro metric-card-purple">
                 <div class="metric-value">11.3%</div>
                 <div class="metric-label">Review Rate</div>
-                <div class="metric-trend trend-neutral">📊 Manageable Workload</div>
+                <div class="metric-trend trend-neutral">Manageable Workload</div>
             </div>
             """, unsafe_allow_html=True)
         
         st.markdown("---")
         
         # Business Impact
-        st.header("💰 Business Impact")
+        st.markdown("<h2 style='text-align: center;'>Business Impact</h2>", unsafe_allow_html=True)
         
         col1, col2 = st.columns(2)
         
         with col1:
             st.markdown("""
-            ### 💰 Annual Benefits
-            - **💵 $12-15M** potential loss prevention
-            - **🎯 43%** of defaults caught early
-            - **📊 11%** manual review rate (manageable workload)
-            - **⚡ 4x improvement** over random selection
-            """)
+            <h3 style='text-align: center; margin-bottom: 1rem;'>Annual Benefits</h3>
+            <div style='padding: 1rem; background: rgba(59, 130, 246, 0.05); border-radius: 8px; border-left: 4px solid var(--primary-blue);'>
+                <p><strong>$12-15M</strong> potential loss prevention</p>
+                <p><strong>43%</strong> of defaults caught early</p>
+                <p><strong>11%</strong> manual review rate (manageable workload)</p>
+                <p><strong>4x improvement</strong> over random selection</p>
+            </div>
+            """, unsafe_allow_html=True)
         
         with col2:
             st.markdown("""
-            ### 🔍 Key Risk Factors Identified
-            1. **📊 Credit Score** - Primary predictor
-            2. **💰 Debt-to-Income Ratio** - Critical threshold at 35%
-            3. **🏠 Loan-to-Value Ratio** - Risk increases above 80%
-            4. **🗺️ Geographic Patterns** - State-level variations
-            """)
+            <h3 style='text-align: center; margin-bottom: 1rem;'>Key Risk Factors Identified</h3>
+            <div style='padding: 1rem; background: rgba(34, 197, 94, 0.05); border-radius: 8px; border-left: 4px solid var(--success);'>
+                <p><strong>1. Credit Score</strong> - Primary predictor</p>
+                <p><strong>2. Debt-to-Income Ratio</strong> - Critical threshold at 35%</p>
+                <p><strong>3. Loan-to-Value Ratio</strong> - Risk increases above 80%</p>
+                <p><strong>4. Geographic Patterns</strong> - State-level variations</p>
+            </div>
+            """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
